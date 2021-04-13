@@ -1,4 +1,7 @@
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import { Switch, Route } from 'react-router-dom'
+import MainContainer from './components/MainContainer'
 
 function App() {
 
@@ -21,6 +24,10 @@ function App() {
       <h1>Hello from React</h1>
       <h2>The distance between the points is {result.distance} {result.unit}</h2>
       <h2>The distance between the points is {result.distance}</h2>
+      <Switch>
+        <Route path="/" component={MainContainer} />
+      </Switch>
+
     </div>
   );
 }
