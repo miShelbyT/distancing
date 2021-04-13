@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react'
+import Lenders from './Lenders'
 
 
 export default class MainContainer extends Component {
@@ -26,6 +27,7 @@ export default class MainContainer extends Component {
         return (
             <div>
                 <h1>Main Container!</h1>
+                <Lenders lenders={this.state.lenders} />
             </div>
         )
     }
