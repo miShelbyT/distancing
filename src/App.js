@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  let point1 = {
+    lat: 41.8781,
+    lng: 87.6298,
+  };
+
+  let point2 = {
+    lat: 40.0583,
+    lng: 74.4057,
+  };
+
+  const distanceBetweenPoints = require("distance-between-geocoordinates");
+
+  let result = distanceBetweenPoints(point1, point2, "mile");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello from React</h1>
+      <h2>The distance between the points is {result.distance} {result.unit}</h2>
+      <h2>The distance between the points is {result.distance}</h2>
     </div>
   );
 }
