@@ -6,6 +6,7 @@ export default class Lender extends Component {
         return (
             <div>
                 <h2>{this.props.lender.name}</h2>
+                <h2>{this.props.lender.provinces}</h2>
             </div>
         )
     }
