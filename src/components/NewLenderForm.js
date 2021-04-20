@@ -1,21 +1,29 @@
 
 import React, {useState} from 'react'
-import MultiSelect from "react-multi-select-component";
 
+import SelectStates from "./SelectStates"
+import SelectCounties from "./SelectCounties"
 
 export default function NewLenderForm() {
 
-    const options = [
-            {value: "AL", label: "Alabama"},
-            {value: "AK", label: "Alaska"},
-            {value: "AS", label: "American Samoa"},
-            {value: "AZ", label: "Arizona"}
-    ]
-
-    const [selected, setSelected] = useState([]);
+    
     const [bank, setBank] = useState("")
+    const [nameClicked, setNameClicked] = useState(false)
 
-    const stateArr = selected.map(ele => ele.value)
+    const [selectedStates, setSelectedStates] = useState([]);
+    const [statesClicked, setStatesClicked] = useState(false)
+
+    const [selectedCounties, setSelectedCounties] = useState([])
+    const [countiesClicked, setCountiesClicked] = useState(false)
+
+    const stateArr = selectedStates.map(ele => ele.value)
+
+    const renderStatesSubmit = () => {
+        setNameClicked(true)
+    }
+    const renderCounties = () => {
+        setStatesClicked(true)
+    }
 
 
     const submitHandler = (e) => {
@@ -40,6 +48,7 @@ export default function NewLenderForm() {
     return (
         <div>
             <form onSubmit={submitHandler}>
+
                 <label>
                     Bank Name:
                 </label>
@@ -50,15 +59,31 @@ export default function NewLenderForm() {
                     value={bank}
                     onChange={e => setBank(e.target.value)}
                 />
-                <h1>Select States</h1>
-                <pre>{JSON.stringify(selected)}</pre>
-                <MultiSelect
-                    options={options}
-                    value={selected}
-                    onChange={setSelected}
-                    labelledBy="Select"
-                />
-                <button>Submit</button>
+                <button type="button" onClick={renderStatesSubmit}>Submit Name</button>
+
+                {nameClicked ?
+                    <>
+                        <SelectStates selectedStates={selectedStates} setSelectedStates={setSelectedStates}/>
+                        <button type="button" onClick={renderCounties}>Submit States</button>
+                    </>
+                    : null
+                }
+                
+                {statesClicked ?
+                    <>
+                    <SelectCounties 
+                        selectedStates={selectedStates} 
+                        selectedCounties={selectedCounties}
+                        setSelectedCounties={setSelectedCounties}
+                    />
+                    <button type="button">Submit Counties</button>
+                    </>
+                    : null
+                }
+
+
+                <br/>
+                <button type="submit">Outer Submit</button>
             </form>
         </div>
     )
