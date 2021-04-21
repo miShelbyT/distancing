@@ -3,6 +3,8 @@ import React, {useState} from 'react'
 
 import SelectStates from "./SelectStates"
 import SelectCounties from "./SelectCounties"
+import SelectCities from "./SelectCities"
+import SelectRadius from "./SelectRadius"
 
 export default function NewLenderForm() {
 
@@ -15,14 +17,22 @@ export default function NewLenderForm() {
 
     const [selectedCounties, setSelectedCounties] = useState([])
     const [countiesClicked, setCountiesClicked] = useState(false)
+    
+    const [selectedRadius, setSelectedRadius] = useState(0)
+    const [radiusClicked, setRadiusClicked] = useState(false)
 
     const stateArr = selectedStates.map(ele => ele.value)
+    const countyArr = selectedCounties.map(ele => ele.value)
+    const lenderRadius = parseInt(selectedRadius.value)
 
     const renderStatesSubmit = () => {
         setNameClicked(true)
     }
     const renderCounties = () => {
         setStatesClicked(true)
+    }
+    const renderRadius = () => {
+        setCountiesClicked(true)
     }
 
 
@@ -35,7 +45,9 @@ export default function NewLenderForm() {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
                     name: bank,
-                    provinces: stateArr
+                    provinces: stateArr,
+                    counties: countyArr,
+                    radius: lenderRadius
                 })
             })
             .then(response => {
@@ -59,12 +71,15 @@ export default function NewLenderForm() {
                     value={bank}
                     onChange={e => setBank(e.target.value)}
                 />
-                <button type="button" onClick={renderStatesSubmit}>Submit Name</button>
+                <button type="button" onClick={renderStatesSubmit}>View States</button>
 
                 {nameClicked ?
                     <>
-                        <SelectStates selectedStates={selectedStates} setSelectedStates={setSelectedStates}/>
-                        <button type="button" onClick={renderCounties}>Submit States</button>
+                        <SelectStates 
+                            selectedStates={selectedStates} 
+                            setSelectedStates={setSelectedStates}
+                        />
+                        <button type="button" onClick={renderCounties}>View Counties</button>
                     </>
                     : null
                 }
@@ -76,10 +91,27 @@ export default function NewLenderForm() {
                         selectedCounties={selectedCounties}
                         setSelectedCounties={setSelectedCounties}
                     />
-                    <button type="button">Submit Counties</button>
+                    <h4>OR</h4>
+                    <SelectCities 
+                        // selectedStates={selectedStates} 
+                        // selectedCounties={selectedCounties}
+                        // setSelectedCounties={setSelectedCounties}
+                    />
+                    <button type="button" onClick={renderRadius}>View Radius</button>
                     </>
                     : null
                 }
+                {countiesClicked ?
+                    <>
+                        <SelectRadius 
+                            selectedRadius={selectedRadius} 
+                            setSelectedRadius={setSelectedRadius}
+                        />
+                        <button type="button">Next</button>
+                    </>
+                    : null
+                }
+
 
 
                 <br/>

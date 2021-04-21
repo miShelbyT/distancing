@@ -21,7 +21,7 @@ export default function SelectCounties(props) {
 
         for (let i = 0; i < allCounties.length; i++){
             let abbrev = Object.keys(allCounties[i])[0]
-            console.log(abbrev)
+            // console.log(abbrev)
 
             let stateCounties = Object.keys(allCounties[i][abbrev])
             
@@ -38,13 +38,6 @@ export default function SelectCounties(props) {
         return arr
     }
     
-    
-    // [
-    //     {value: "AL", label: "Alabama"},
-    //     {value: "AK", label: "Alaska"},
-    //     {value: "AS", label: "American Samoa"},
-    //     {value: "AZ", label: "Arizona"}
-    // ]
 
     return (
 
@@ -55,8 +48,7 @@ export default function SelectCounties(props) {
                 onChange={props.setSelectedCounties}
                 labelledBy="Select"
             /> 
-            {/* {allCounties()} */}
-            {/* {options()} */}
+            
         </div>
     )
 }
