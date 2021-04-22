@@ -7,11 +7,10 @@ export default function SelectRadius(props) {
     
     return (
         <div>
-            <h2>Select Radius</h2>
+            <h4>Within how many miles must the property be from your nearest branch?</h4>
             <select
-                // options={options}
                 value={props.selectedRadius}
-                onChange={props.setSelectedRadius}
+                onChange={e => props.setSelectedRadius(e.target.value)}
             >
                 <option value="">select radius</option>
                 <option value="5">5 miles</option>
