@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {withRouter} from "react-router-dom"
 
 import SelectStates from "./SelectStates";
 import SelectCounties from "./SelectCounties";
@@ -9,9 +10,18 @@ import MinLoanAmt from "./MinLoanAmt";
 import LtvLtc from "./LtvLtc";
 import IndexType from "./IndexType";
 import BPS from "./BPS";
+import BaseRate from "./BaseRate";
+import AboveBase from "./AboveBase";
+import Amortization from "./Amortization";
+import LoanTerm from "./LoanTerm";
+import Recourse from "./Recourse";
 
-export default function NewLenderForm() {
+function NewLenderForm(props) {
   const [bank, setBank] = useState("");
+  const [fullName, setFullName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("")
+  const [website, setWebsite] = useState("")
   const [nameClicked, setNameClicked] = useState(false);
 
   const [selectedStates, setSelectedStates] = useState([]);
@@ -33,8 +43,14 @@ export default function NewLenderForm() {
 
   const [selectedIndexType, setSelectedIndexType] = useState("");
   const [selectedBPS, setSelectedBPS] = useState(0);
+  const [selectedBaseRate, setSelectedBaseRate] = useState(0.0);
+  const [selectedAboveBase, setSelectedAboveBase] = useState(0.0);
   const [indexTypeClicked, setIndexTypeClicked] = useState(false);
-
+  
+  const [selectedAmortization, setSelectedAmortization] = useState(0);
+  const [selectedLoanTerm, setSelectedLoanTerm] = useState(0.0);
+  const [selectedRecourse, setSelectedRecourse] = useState(false);
+  
   //Objects to pass in to POST request
   const stateArr = selectedStates.map((ele) => ele.value);
   const countyArr = selectedCounties.map((ele) => ele.value);
@@ -67,7 +83,7 @@ export default function NewLenderForm() {
     setLtcClicked(true);
   };
 
-  const renderBPS = () => {
+  const renderAmortization = () => {
     setIndexTypeClicked(true);
   };
 
@@ -80,6 +96,10 @@ export default function NewLenderForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: bank,
+        full_name: fullName,
+        phone: phone,
+        email: email,
+        website: website,
         provinces: stateArr,
         counties: countyArr,
         radius: lenderRadius,
@@ -88,13 +108,21 @@ export default function NewLenderForm() {
         ltv: LTV,
         ltc: LTC,
         index_type: selectedIndexType,
-        bps: Bps
+        bps: Bps,
+        base_rate: selectedBaseRate,
+        above_base: selectedAboveBase,
+        amortization: selectedAmortization,
+        loan_term: selectedLoanTerm,
+        recourse: selectedRecourse
       }),
     })
       .then((response) => {
         return response.json();
       })
-      .then(console.log);
+      .then(props.history.push("/submitted"));
+
+    //   props.history.push("/submitted")
+    
   };
 
   return (
@@ -107,6 +135,34 @@ export default function NewLenderForm() {
           placeholder="ie Chase, National"
           value={bank}
           onChange={(e) => setBank(e.target.value)}
+        />
+        <input
+          name="fullName"
+          type="text"
+          placeholder="Full Name"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+        />
+        <input
+          name="phone"
+          type="tel"
+          placeholder="Phone Format: 123-456-7890"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+        <input
+          name="email"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          name="website"
+          type="text"
+          placeholder="Website URL"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
         />
         <button type="button" onClick={renderStatesSubmit}>
           View States
@@ -180,8 +236,8 @@ export default function NewLenderForm() {
             </button>
           </>
         ) : null}
-        //ltcClicked
-        {true ? (
+       
+        {ltcClicked ? ( 
           <>
             <IndexType
               selectedIndexType={selectedIndexType}
@@ -191,14 +247,43 @@ export default function NewLenderForm() {
               selectedBPS={selectedBPS} 
               setSelectedBPS={setSelectedBPS} 
             />
-            <button type="button" onClick={renderBPS}>
+            <BaseRate 
+              selectedBaseRate={selectedBaseRate} 
+              setSelectedBaseRate={setSelectedBaseRate}
+            />
+            <AboveBase 
+              selectedAboveBase={selectedAboveBase} 
+              setSelectedAboveBase={setSelectedAboveBase}
+            />
+            <button type="button" onClick={renderAmortization}>
+              Next
+            </button>
+          </>
+        ) : null}
+        {true ? ( //indexTypeClicked 
+          <>
+            <Amortization
+              selectedAmortization={selectedAmortization}
+              setSelectedAmortization={setSelectedAmortization}
+            />
+            <LoanTerm
+              selectedLoanTerm={selectedLoanTerm}
+              setSelectedLoanTerm={setSelectedLoanTerm}
+            />
+            <Recourse
+              selectedRecourse={selectedRecourse}
+              setSelectedRecourse={setSelectedRecourse}
+            />
+            <button type="button">
               Next
             </button>
           </>
         ) : null}
         <br />
-        <button type="submit">Outer Submit</button>
+        <button type="submit" >Outer Submit</button>
       </form>
     </div>
   );
 }
+
+export default withRouter(NewLenderForm)

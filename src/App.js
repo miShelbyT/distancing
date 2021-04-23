@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './App.css'
 import { Switch, Route } from 'react-router-dom'
 import MainContainer from './components/MainContainer'
+import Submitted from './components/Submitted'
 
 function App() {
 
@@ -25,7 +26,8 @@ function App() {
       <h2>The distance between the points is {result.distance} {result.unit}</h2>
       <h2>The distance between the points is {result.distance}</h2> */}
       <Switch>
-        <Route path="/" component={MainContainer} />
+        <Route exact path="/" component={MainContainer} />
+        <Route path="/submitted" component={Submitted} />
       </Switch>
 
     </div>
