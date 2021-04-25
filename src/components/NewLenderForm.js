@@ -17,6 +17,9 @@ import LoanTerm from "./LoanTerm";
 import Recourse from "./Recourse";
 import PropertyTypes from "./PropertyTypes";
 import LoanProducts from "./LoanProducts";
+import PrepaymentPenalty from "./PrepaymentPenalty";
+import BorrowerEligibility from "./BorrowerEligibility";
+import BorrowerCreditScore from "./BorrowerCreditScore";
 
 function NewLenderForm(props) {
   const [bank, setBank] = useState("");
@@ -55,7 +58,19 @@ function NewLenderForm(props) {
   const [amortizationClicked, setAmortizationClicked] = useState(false);
   
   const [selectedPropertyTypes, setSelectedPropertyTypes] = useState([]);
+  const [propertyTypesClicked, setPropertyTypesClicked] = useState(false);
+  
   const [selectedLoanProducts, setSelectedLoanProducts] = useState([]);
+  const [loanProductsClicked, setLoanProductsClicked] = useState(false);
+  
+  const [selectedPrepaymentPenalty, setSelectedPrepaymentPenalty] = useState([]);
+  const [prepaymentPenaltyClicked, setPrepaymentPenaltyClicked] = useState(false);
+  
+  const [selectedBorrowerEligibility, setSelectedBorrowerEligibility] = useState([]);
+  const [borrowerEligibilityClicked, setBorrowerEligibilityClicked] = useState(false);
+  
+  const [selectedBorrowerCreditScore, setSelectedBorrowerCreditScore] = useState([]);
+//   const [borrowerEligibilityClicked, setBorrowerEligibilityClicked] = useState(false);
   
   //Objects to pass in to POST request
   const stateArr = selectedStates.map((ele) => ele.value);
@@ -68,6 +83,8 @@ function NewLenderForm(props) {
   const Bps = parseInt(selectedBPS)
   const propertyTypesArr = selectedPropertyTypes.map((ele) => ele.value);
   const loanProductsArr = selectedLoanProducts.map((ele) => ele.value);
+  const prepaymentPenaltyArr = selectedPrepaymentPenalty.map((ele) => ele.value);
+  const borrowerEligibilityArr = selectedBorrowerEligibility.map((ele) => ele.value);
 
   const renderStatesSubmit = () => {
     setNameClicked(true);
@@ -94,6 +111,18 @@ function NewLenderForm(props) {
   };
   const renderPropertyTypes = () => {
     setAmortizationClicked(true);
+  };
+  const renderLoanProducts = () => {
+    setPropertyTypesClicked(true);
+  };
+  const renderPrepaymentPenalty = () => {
+    setLoanProductsClicked(true);
+  };
+  const renderBorrowerEligibility = () => {
+    setPrepaymentPenaltyClicked(true);
+  };
+  const renderBorrowerCreditScore = () => {
+    setBorrowerEligibilityClicked(true);
   };
 
   const submitHandler = (e) => {
@@ -124,7 +153,10 @@ function NewLenderForm(props) {
         loan_term: selectedLoanTerm,
         recourse: selectedRecourse,
         property_types: propertyTypesArr,
-        loan_products: loanProductsArr
+        loan_products: loanProductsArr,
+        prepayment_penalty: prepaymentPenaltyArr,
+        borrower_eligibility: borrowerEligibilityArr,
+        borrower_credit_score: selectedBorrowerCreditScore
       }),
     })
       .then((response) => {
@@ -290,17 +322,56 @@ function NewLenderForm(props) {
             </button>
           </>
         ) : null}
-        {true ? ( //amortizationClicked
+        {amortizationClicked ? ( 
           <>
             <PropertyTypes
               selectedPropertyTypes={selectedPropertyTypes}
               setSelectedPropertyTypes={setSelectedPropertyTypes}
-            />
+            />    
+            <button type="button" onClick={renderLoanProducts}>
+              Next
+            </button>
+          </>
+        ) : null}
+        {propertyTypesClicked ? ( 
+          <>
             <LoanProducts
               selectedLoanProducts={selectedLoanProducts}
               setSelectedLoanProducts={setSelectedLoanProducts}
             />
-            
+            <button type="button" onClick={renderPrepaymentPenalty}>
+              Next
+            </button>
+          </>
+        ) : null}
+        {loanProductsClicked ? ( 
+          <>
+            <PrepaymentPenalty
+              selectedPrepaymentPenalty={selectedPrepaymentPenalty}
+              setSelectedPrepaymentPenalty={setSelectedPrepaymentPenalty}
+            />
+            <button type="button" onClick={renderBorrowerEligibility}>
+              Next
+            </button>
+          </>
+        ) : null}
+        {prepaymentPenaltyClicked ? ( 
+          <>
+            <BorrowerEligibility
+              selectedBorrowerEligibility={selectedBorrowerEligibility}
+              setSelectedBorrowerEligibility={setSelectedBorrowerEligibility}
+            />
+            <button type="button" onClick={renderBorrowerCreditScore}>
+              Next
+            </button>
+          </>
+        ) : null}
+        {borrowerEligibilityClicked ? ( 
+          <>
+            <BorrowerCreditScore
+              selectedBorrowerCreditScore={selectedBorrowerCreditScore}
+              setSelectedBorrowerCreditScore={setSelectedBorrowerCreditScore}
+            />
             <button type="button">
               Next
             </button>

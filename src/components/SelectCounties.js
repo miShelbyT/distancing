@@ -42,6 +42,7 @@ export default function SelectCounties(props) {
     return (
 
         <div>
+            <h1>Please select all counties that you lend in</h1>
             <MultiSelect
                 options={options}
                 value={props.selectedCounties}

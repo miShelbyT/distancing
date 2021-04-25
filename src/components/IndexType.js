@@ -3,7 +3,7 @@ import React from 'react'
 function IndexType(props) {
   return (
     <div>
-      <h4>What index do you base your loans on? If you use multiples please select the most common one. </h4>
+      <h4>Which index do you base your loans on? If you use multiple please select the most common one. </h4>
             <select
                 value={props.selectedIndexType}
                 onChange={e => props.setSelectedIndexType(e.target.value)}
