@@ -15,6 +15,8 @@ import AboveBase from "./AboveBase";
 import Amortization from "./Amortization";
 import LoanTerm from "./LoanTerm";
 import Recourse from "./Recourse";
+import PropertyTypes from "./PropertyTypes";
+import LoanProducts from "./LoanProducts";
 
 function NewLenderForm(props) {
   const [bank, setBank] = useState("");
@@ -50,6 +52,10 @@ function NewLenderForm(props) {
   const [selectedAmortization, setSelectedAmortization] = useState(0);
   const [selectedLoanTerm, setSelectedLoanTerm] = useState(0.0);
   const [selectedRecourse, setSelectedRecourse] = useState(false);
+  const [amortizationClicked, setAmortizationClicked] = useState(false);
+  
+  const [selectedPropertyTypes, setSelectedPropertyTypes] = useState([]);
+  const [selectedLoanProducts, setSelectedLoanProducts] = useState([]);
   
   //Objects to pass in to POST request
   const stateArr = selectedStates.map((ele) => ele.value);
@@ -60,6 +66,8 @@ function NewLenderForm(props) {
   const LTV = parseFloat(selectedLTV);
   const LTC = parseFloat(selectedLTC);
   const Bps = parseInt(selectedBPS)
+  const propertyTypesArr = selectedPropertyTypes.map((ele) => ele.value);
+  const loanProductsArr = selectedLoanProducts.map((ele) => ele.value);
 
   const renderStatesSubmit = () => {
     setNameClicked(true);
@@ -78,13 +86,14 @@ function NewLenderForm(props) {
       window.alert("Max Loan amt must be greater that Min");
     } else setMaxMinClicked(true);
   };
-
   const renderIndexType = () => {
     setLtcClicked(true);
   };
-
   const renderAmortization = () => {
     setIndexTypeClicked(true);
+  };
+  const renderPropertyTypes = () => {
+    setAmortizationClicked(true);
   };
 
   const submitHandler = (e) => {
@@ -113,7 +122,9 @@ function NewLenderForm(props) {
         above_base: selectedAboveBase,
         amortization: selectedAmortization,
         loan_term: selectedLoanTerm,
-        recourse: selectedRecourse
+        recourse: selectedRecourse,
+        property_types: propertyTypesArr,
+        loan_products: loanProductsArr
       }),
     })
       .then((response) => {
@@ -260,7 +271,7 @@ function NewLenderForm(props) {
             </button>
           </>
         ) : null}
-        {true ? ( //indexTypeClicked 
+        {indexTypeClicked ? ( 
           <>
             <Amortization
               selectedAmortization={selectedAmortization}
@@ -274,6 +285,22 @@ function NewLenderForm(props) {
               selectedRecourse={selectedRecourse}
               setSelectedRecourse={setSelectedRecourse}
             />
+            <button type="button" onClick={renderPropertyTypes}>
+              Next
+            </button>
+          </>
+        ) : null}
+        {true ? ( //amortizationClicked
+          <>
+            <PropertyTypes
+              selectedPropertyTypes={selectedPropertyTypes}
+              setSelectedPropertyTypes={setSelectedPropertyTypes}
+            />
+            <LoanProducts
+              selectedLoanProducts={selectedLoanProducts}
+              setSelectedLoanProducts={setSelectedLoanProducts}
+            />
+            
             <button type="button">
               Next
             </button>
