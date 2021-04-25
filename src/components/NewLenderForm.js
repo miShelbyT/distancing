@@ -38,8 +38,8 @@ function NewLenderForm(props) {
   const [selectedRadius, setSelectedRadius] = useState(0);
   const [radiusClicked, setRadiusClicked] = useState(false);
 
-  const [selectedMaxLoan, setSelectedMaxLoan] = useState(0);
-  const [selectedMinLoan, setSelectedMinLoan] = useState(0);
+  const [selectedMaxLoan, setSelectedMaxLoan] = useState(0.0);
+  const [selectedMinLoan, setSelectedMinLoan] = useState(0.0);
   const [MaxMinClicked, setMaxMinClicked] = useState(false);
 
   const [selectedLTV, setSelectedLTV] = useState(0.0);
@@ -69,7 +69,7 @@ function NewLenderForm(props) {
   const [selectedBorrowerEligibility, setSelectedBorrowerEligibility] = useState([]);
   const [borrowerEligibilityClicked, setBorrowerEligibilityClicked] = useState(false);
   
-  const [selectedBorrowerCreditScore, setSelectedBorrowerCreditScore] = useState([]);
+  const [selectedBorrowerCreditScore, setSelectedBorrowerCreditScore] = useState(0);
 //   const [borrowerEligibilityClicked, setBorrowerEligibilityClicked] = useState(false);
   
   //Objects to pass in to POST request

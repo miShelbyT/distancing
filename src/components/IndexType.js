@@ -12,7 +12,7 @@ function IndexType(props) {
                 <option value="US 10 Year Treasury">US 10 Year Treasury</option>
                 <option value="US 5 Year Treasury">US 5 Year Treasury</option>
                 <option value="WSJ Prime">WSJ Prime</option>
-                <option value="LIBOR (30 Day)">LIBOR (30 Day)</option>
+                <option value="LIBOR">LIBOR (30 Day)</option>
                 <option value="10 Year SWAP">10 Year SWAP</option>
                 <option value="FHLB">FHLB</option>
                 <option value="Base Rate">Base Rate</option>
