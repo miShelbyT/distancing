@@ -16,7 +16,7 @@ export default function BorrowerEligibility(props) {
     
     return (
         <div>
-            <h2>Please select all options that pertain to your borrower eligibility requirements</h2>
+            <h4>Please select all options that pertain to your borrower eligibility requirements</h4>
             {/* <pre>{JSON.stringify(props.selected)}</pre> */}
             <MultiSelect
                 options={options}

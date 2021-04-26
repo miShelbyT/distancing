@@ -33,6 +33,7 @@ function NewLenderForm(props) {
   const [statesClicked, setStatesClicked] = useState(false);
 
   const [selectedCounties, setSelectedCounties] = useState([]);
+  const [selectedCities, setSelectedCities] = useState([]);
   const [countiesClicked, setCountiesClicked] = useState(false);
 
   const [selectedRadius, setSelectedRadius] = useState(0);
@@ -90,7 +91,7 @@ function NewLenderForm(props) {
   useEffect(() => {
     console.log("clicked")
     bottomRef.current.scrollIntoView({behavior: "smooth"})
-  }, [radiusClicked, MaxMinClicked, ltcClicked])
+  }, [nameClicked, statesClicked, countiesClicked, radiusClicked, MaxMinClicked, ltcClicked, indexTypeClicked, amortizationClicked, propertyTypesClicked, loanProductsClicked, prepaymentPenaltyClicked, borrowerEligibilityClicked])
 
   const renderStatesSubmit = () => {
     setNameClicked(true);
@@ -177,7 +178,7 @@ function NewLenderForm(props) {
   return (
     <div>
       <form onSubmit={submitHandler}>
-        <label>Bank Name:</label>
+        {/* <label>Bank Name:</label> */}
         <input
           name="name"
           type="text"
@@ -185,6 +186,7 @@ function NewLenderForm(props) {
           value={bank}
           onChange={(e) => setBank(e.target.value)}
         />
+        <br />
         <input
           name="fullName"
           type="text"
@@ -192,6 +194,7 @@ function NewLenderForm(props) {
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
         />
+        <br />
         <input
           name="phone"
           type="tel"
@@ -199,6 +202,7 @@ function NewLenderForm(props) {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
+        <br />
         <input
           name="email"
           type="email"
@@ -206,6 +210,7 @@ function NewLenderForm(props) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <br />
         <input
           name="website"
           type="text"
@@ -213,6 +218,7 @@ function NewLenderForm(props) {
           value={website}
           onChange={(e) => setWebsite(e.target.value)}
         />
+        <br />
         <button type="button" onClick={renderStatesSubmit}>
           View States
         </button>
@@ -236,9 +242,9 @@ function NewLenderForm(props) {
             />
             <h4>OR</h4>
             <SelectCities
-            // selectedStates={selectedStates}
-            // selectedCounties={selectedCounties}
-            // setSelectedCounties={setSelectedCounties}
+              selectedStates={selectedStates}
+              selectedCities={selectedCities}
+              setSelectedCities={setSelectedCities}
             />
             <button type="button" onClick={renderRadius}>
               View Radius

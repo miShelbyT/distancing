@@ -61,7 +61,7 @@ export default function SelectStates(props) {
     
     return (
         <div>
-            <h1>Please select all states in which you lend</h1>
+            <h4>Please select all states in which you lend</h4>
             {/* <pre>{JSON.stringify(props.selected)}</pre> */}
             <MultiSelect
                 options={options}

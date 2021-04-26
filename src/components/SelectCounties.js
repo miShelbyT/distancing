@@ -1,7 +1,7 @@
 
 import React from 'react'
 import MultiSelect from "react-multi-select-component";
-import scus from "state-counties-us";
+// import scus from "state-counties-us";
 
 export default function SelectCounties(props) {
 
@@ -42,7 +42,7 @@ export default function SelectCounties(props) {
     return (
 
         <div>
-            <h1>Please select all counties that you lend in</h1>
+            <h4>Please select all counties that you lend in</h4>
             <MultiSelect
                 options={options}
                 value={props.selectedCounties}

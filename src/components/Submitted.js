@@ -4,7 +4,7 @@ import React from 'react'
 export default function Submitted() {
     return (
         <div>
-            <h2>Submitted!</h2>
+            <h4>Submitted!</h4>
         </div>
     )
 }

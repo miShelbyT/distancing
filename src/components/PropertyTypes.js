@@ -45,7 +45,7 @@ export default function PropertyTypes(props) {
     
     return (
         <div>
-            <h2>Please select all property types that you lend on</h2>
+            <h4>Please select all property types that you lend on</h4>
             {/* <pre>{JSON.stringify(props.selected)}</pre> */}
             <MultiSelect
                 options={options}
