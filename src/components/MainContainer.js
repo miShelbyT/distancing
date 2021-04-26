@@ -28,7 +28,7 @@ export default class MainContainer extends Component {
         // console.log(this.state)
         return (
             <div>
-                <h1>Main Container!</h1>
+                
                 <NewLenderForm />
                 {/* <Lenders lenders={this.state.lenders} /> */}
             </div>
