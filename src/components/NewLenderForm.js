@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {withRouter} from "react-router-dom"
 
 import SelectStates from "./SelectStates";
@@ -85,6 +85,12 @@ function NewLenderForm(props) {
   const loanProductsArr = selectedLoanProducts.map((ele) => ele.value);
   const prepaymentPenaltyArr = selectedPrepaymentPenalty.map((ele) => ele.value);
   const borrowerEligibilityArr = selectedBorrowerEligibility.map((ele) => ele.value);
+
+  const bottomRef = useRef(null)
+  useEffect(() => {
+    console.log("clicked")
+    bottomRef.current.scrollIntoView({behavior: "smooth"})
+  }, [radiusClicked, MaxMinClicked, ltcClicked])
 
   const renderStatesSubmit = () => {
     setNameClicked(true);
@@ -380,6 +386,7 @@ function NewLenderForm(props) {
         <br />
         <button type="submit" >Outer Submit</button>
       </form>
+      <div ref={bottomRef} />
     </div>
   );
 }
