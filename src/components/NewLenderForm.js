@@ -76,6 +76,7 @@ function NewLenderForm(props) {
   //Objects to pass in to POST request
   const stateArr = selectedStates.map((ele) => ele.value);
   const countyArr = selectedCounties.map((ele) => ele.value);
+  const cityArr = selectedCities.map((ele) => ele.value);
   const lenderRadius = parseInt(selectedRadius);
   const maxLoanAmt = parseInt(selectedMaxLoan);
   const minLoanAmt = parseInt(selectedMinLoan);
@@ -147,6 +148,7 @@ function NewLenderForm(props) {
         website: website,
         provinces: stateArr,
         counties: countyArr,
+        cities: cityArr,
         radius: lenderRadius,
         max_loan_amt: maxLoanAmt,
         min_loan_amt: minLoanAmt,
