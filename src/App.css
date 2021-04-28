@@ -29,4 +29,13 @@
   color: #61dafb;
 }
 
+.parent {
+  overflow-anchor: none;
+}
+.anchor {
+  overflow-anchor: auto;
+  height: 1rem;
+}
+
+
 

@@ -20,6 +20,7 @@ import LoanProducts from "./LoanProducts";
 import PrepaymentPenalty from "./PrepaymentPenalty";
 import BorrowerEligibility from "./BorrowerEligibility";
 import BorrowerCreditScore from "./BorrowerCreditScore";
+import GeoParameter from "./GeoParameter";
 
 function NewLenderForm(props) {
   const [bank, setBank] = useState("");
@@ -32,6 +33,8 @@ function NewLenderForm(props) {
   const [selectedStates, setSelectedStates] = useState([]);
   const [statesClicked, setStatesClicked] = useState(false);
 
+  const [selectedGeoParameter, setSelectedGeoParameter] = useState("");
+  
   const [selectedCounties, setSelectedCounties] = useState([]);
   const [selectedCities, setSelectedCities] = useState([]);
   const [countiesClicked, setCountiesClicked] = useState(false);
@@ -48,6 +51,7 @@ function NewLenderForm(props) {
   const [ltcClicked, setLtcClicked] = useState(false);
 
   const [selectedIndexType, setSelectedIndexType] = useState("");
+  const [baseRateSelected, setBaseRateSelected] = useState(false);
   const [selectedBPS, setSelectedBPS] = useState(0);
   const [selectedBaseRate, setSelectedBaseRate] = useState(0.0);
   const [selectedAboveBase, setSelectedAboveBase] = useState(0.0);
@@ -92,7 +96,7 @@ function NewLenderForm(props) {
   useEffect(() => {
     console.log("clicked")
     bottomRef.current.scrollIntoView({behavior: "smooth"})
-  }, [nameClicked, statesClicked, countiesClicked, radiusClicked, MaxMinClicked, ltcClicked, indexTypeClicked, amortizationClicked, propertyTypesClicked, loanProductsClicked, prepaymentPenaltyClicked, borrowerEligibilityClicked])
+  }, [nameClicked, statesClicked, countiesClicked, radiusClicked, MaxMinClicked, ltcClicked, indexTypeClicked, baseRateSelected, amortizationClicked, propertyTypesClicked, loanProductsClicked, prepaymentPenaltyClicked, borrowerEligibilityClicked])
 
   const renderStatesSubmit = () => {
     setNameClicked(true);
@@ -132,6 +136,61 @@ function NewLenderForm(props) {
   const renderBorrowerCreditScore = () => {
     setBorrowerEligibilityClicked(true);
   };
+
+  const renderConditional = () => {
+    switch (selectedGeoParameter) {
+      case "state":
+        return (
+          <button type="button" onClick={renderRadius}>
+            Next
+          </button>
+        )
+        break;
+      case "counties":
+        return (
+          <>
+          <SelectCounties
+          selectedStates={selectedStates}
+          selectedCounties={selectedCounties}
+          setSelectedCounties={setSelectedCounties}
+          />
+          <button type="button" onClick={renderRadius}>
+              Next
+          </button>
+          </>
+          )
+        break;
+      case "radius":
+        return(
+        <>
+        <SelectRadius
+          selectedRadius={selectedRadius}
+          setSelectedRadius={setSelectedRadius}
+          />
+        <button type="button" onClick={renderRadius}>
+          Next
+        </button>
+        </>
+        )
+        break;
+      case "cities":
+        return (
+          <>
+          <SelectCities
+          selectedStates={selectedStates}
+          selectedCities={selectedCities}
+          setSelectedCities={setSelectedCities}
+          />
+          <button type="button" onClick={renderRadius}>
+              Next
+          </button>
+          </>
+        )
+          break;
+      default:
+        break;
+    }
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -178,7 +237,8 @@ function NewLenderForm(props) {
   };
 
   return (
-    <div>
+    <div className="parent">
+    <div className="anchor">
       <form onSubmit={submitHandler}>
         {/* <label>Bank Name:</label> */}
         <input
@@ -237,7 +297,12 @@ function NewLenderForm(props) {
         ) : null}
         {statesClicked ? (
           <>
-            <SelectCounties
+            <GeoParameter
+              selectedGeoParameter={selectedGeoParameter}
+              setSelectedGeoParameter={setSelectedGeoParameter}
+            />
+            {renderConditional()}
+            {/* <SelectCounties
               selectedStates={selectedStates}
               selectedCounties={selectedCounties}
               setSelectedCounties={setSelectedCounties}
@@ -248,23 +313,23 @@ function NewLenderForm(props) {
               selectedCities={selectedCities}
               setSelectedCities={setSelectedCities}
             />
-            <button type="button" onClick={renderRadius}>
-              View Radius
-            </button>
-          </>
-        ) : null}
-        {countiesClicked ? (
-          <>
             <SelectRadius
               selectedRadius={selectedRadius}
               setSelectedRadius={setSelectedRadius}
-            />
+            /> */}
+            {/* <button type="button" onClick={renderRadius}>
+              Next
+            </button> */}
+          </>
+        ) : null}
+        {/* {countiesClicked ? (
+          <>
             <button type="button" onClick={renderMaxLoan}>
               View Max Loan amt
             </button>
           </>
-        ) : null}
-        {radiusClicked ? (
+        ) : null} */}
+        {countiesClicked ? ( //radiusClicked
           <>
             <MaxLoanAmt
               selectedMaxLoan={selectedMaxLoan}
@@ -304,14 +369,21 @@ function NewLenderForm(props) {
               selectedBPS={selectedBPS} 
               setSelectedBPS={setSelectedBPS} 
             />
-            <BaseRate 
-              selectedBaseRate={selectedBaseRate} 
-              setSelectedBaseRate={setSelectedBaseRate}
-            />
-            <AboveBase 
-              selectedAboveBase={selectedAboveBase} 
-              setSelectedAboveBase={setSelectedAboveBase}
-            />
+            {selectedIndexType === "Base Rate" ? 
+              // setBaseRateSelected(true)
+              (
+                <>
+                <BaseRate 
+                selectedBaseRate={selectedBaseRate} 
+                setSelectedBaseRate={setSelectedBaseRate}
+                />
+                <AboveBase 
+                selectedAboveBase={selectedAboveBase} 
+                setSelectedAboveBase={setSelectedAboveBase}
+                />
+                </>
+              )
+              : null}
             <button type="button" onClick={renderAmortization}>
               Next
             </button>
@@ -395,6 +467,7 @@ function NewLenderForm(props) {
         <button type="submit" >Outer Submit</button>
       </form>
       <div ref={bottomRef} />
+    </div>
     </div>
   );
 }

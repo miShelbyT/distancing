@@ -332,11 +332,6 @@ export default function SelectCities(props) {
             }
         }
 
-    // allCities.filter(city => {
-    //             props.selectedStates.includes(city.slice(-2))
-    //         }
-    //     )
-
     console.log(filteredCities)
     
     const options = () => {
