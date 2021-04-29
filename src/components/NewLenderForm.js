@@ -75,7 +75,7 @@ function NewLenderForm(props) {
   const [borrowerEligibilityClicked, setBorrowerEligibilityClicked] = useState(false);
   
   const [selectedBorrowerCreditScore, setSelectedBorrowerCreditScore] = useState(0);
-//   const [borrowerEligibilityClicked, setBorrowerEligibilityClicked] = useState(false);
+  const [creditScoreClicked, setCreditScoreClicked] = useState(false);
   
   //Objects to pass in to POST request
   const stateArr = selectedStates.map((ele) => ele.value);
@@ -136,6 +136,9 @@ function NewLenderForm(props) {
   const renderBorrowerCreditScore = () => {
     setBorrowerEligibilityClicked(true);
   };
+  const renderSummary = () => {
+    setCreditScoreClicked(true);
+  };
 
   const renderConditional = () => {
     switch (selectedGeoParameter) {
@@ -192,6 +195,31 @@ function NewLenderForm(props) {
     }
   }
 
+  const baseRateConditional = () => {
+    if (selectedIndexType === "Base Rate") {
+      return(
+        <>
+        <BaseRate 
+          selectedBaseRate={selectedBaseRate} 
+          setSelectedBaseRate={setSelectedBaseRate}
+        />
+        <AboveBase 
+          selectedAboveBase={selectedAboveBase} 
+          setSelectedAboveBase={setSelectedAboveBase}
+        />
+        </>
+      )
+    } else if (selectedIndexType === "") return null
+    else {
+      return (
+        <BPS 
+          selectedBPS={selectedBPS} 
+          setSelectedBPS={setSelectedBPS} 
+        />
+      )
+    }
+  }
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -240,7 +268,7 @@ function NewLenderForm(props) {
     <div className="parent">
     <div className="anchor">
       <form onSubmit={submitHandler}>
-        {/* <label>Bank Name:</label> */}
+        <label>Bank Name:</label>
         <input
           name="name"
           type="text"
@@ -249,30 +277,35 @@ function NewLenderForm(props) {
           onChange={(e) => setBank(e.target.value)}
         />
         <br />
+        <label>Your Name:</label>
         <input
           name="fullName"
           type="text"
           placeholder="Full Name"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-        />
+          />
         <br />
+        <label>Phone Number:</label>
         <input
           name="phone"
           type="tel"
-          placeholder="Phone Format: 123-456-7890"
+          placeholder="xxx-xxx-xxxx"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-        />
+          />
         <br />
+        <label>Email:</label>
         <input
           name="email"
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-        />
+          />
         <br />
+        <label>Website URL:</label>
         <input
           name="website"
           type="text"
@@ -282,7 +315,7 @@ function NewLenderForm(props) {
         />
         <br />
         <button type="button" onClick={renderStatesSubmit}>
-          View States
+          Next
         </button>
         {nameClicked ? (
           <>
@@ -291,7 +324,7 @@ function NewLenderForm(props) {
               setSelectedStates={setSelectedStates}
             />
             <button type="button" onClick={renderCounties}>
-              View Counties
+              Next
             </button>
           </>
         ) : null}
@@ -302,42 +335,17 @@ function NewLenderForm(props) {
               setSelectedGeoParameter={setSelectedGeoParameter}
             />
             {renderConditional()}
-            {/* <SelectCounties
-              selectedStates={selectedStates}
-              selectedCounties={selectedCounties}
-              setSelectedCounties={setSelectedCounties}
-            />
-            <h4>OR</h4>
-            <SelectCities
-              selectedStates={selectedStates}
-              selectedCities={selectedCities}
-              setSelectedCities={setSelectedCities}
-            />
-            <SelectRadius
-              selectedRadius={selectedRadius}
-              setSelectedRadius={setSelectedRadius}
-            /> */}
-            {/* <button type="button" onClick={renderRadius}>
-              Next
-            </button> */}
           </>
         ) : null}
-        {/* {countiesClicked ? (
-          <>
-            <button type="button" onClick={renderMaxLoan}>
-              View Max Loan amt
-            </button>
-          </>
-        ) : null} */}
         {countiesClicked ? ( //radiusClicked
           <>
-            <MaxLoanAmt
-              selectedMaxLoan={selectedMaxLoan}
-              setSelectedMaxLoan={setSelectedMaxLoan}
-            />
             <MinLoanAmt
               selectedMinLoan={selectedMinLoan}
               setSelectedMinLoan={setSelectedMinLoan}
+            />
+            <MaxLoanAmt
+              selectedMaxLoan={selectedMaxLoan}
+              setSelectedMaxLoan={setSelectedMaxLoan}
             />
 
             <button type="button" onClick={renderLTV}>
@@ -365,25 +373,7 @@ function NewLenderForm(props) {
               selectedIndexType={selectedIndexType}
               setSelectedIndexType={setSelectedIndexType}
             />
-            <BPS 
-              selectedBPS={selectedBPS} 
-              setSelectedBPS={setSelectedBPS} 
-            />
-            {selectedIndexType === "Base Rate" ? 
-              // setBaseRateSelected(true)
-              (
-                <>
-                <BaseRate 
-                selectedBaseRate={selectedBaseRate} 
-                setSelectedBaseRate={setSelectedBaseRate}
-                />
-                <AboveBase 
-                selectedAboveBase={selectedAboveBase} 
-                setSelectedAboveBase={setSelectedAboveBase}
-                />
-                </>
-              )
-              : null}
+            {baseRateConditional()}
             <button type="button" onClick={renderAmortization}>
               Next
             </button>
@@ -458,15 +448,39 @@ function NewLenderForm(props) {
               selectedBorrowerCreditScore={selectedBorrowerCreditScore}
               setSelectedBorrowerCreditScore={setSelectedBorrowerCreditScore}
             />
-            <button type="button">
-              Next
+            <button type="button" onClick={renderSummary}>
+              View Summary!
             </button>
           </>
         ) : null}
+        {creditScoreClicked ? //creditScoreClicked
+          (
+          <div>
+            {bank ? <h6>Bank Name: {bank}</h6> : null}
+            {fullName ? <h6>Full Name: {fullName}</h6> : null}
+            <h6>Summary!</h6>
+          </div>
+          ) 
+          :null
+        }
+        
         <br />
         <button type="submit" >Outer Submit</button>
       </form>
-      <div ref={bottomRef} />
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <div ref={bottomRef}/>
     </div>
     </div>
   );
