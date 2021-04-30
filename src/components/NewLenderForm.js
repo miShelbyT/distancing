@@ -453,34 +453,59 @@ function NewLenderForm(props) {
             </button>
           </>
         ) : null}
-        {creditScoreClicked ? //creditScoreClicked
+        {/* <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/> */}
+        <div ref={bottomRef}/>
+        {true ? //creditScoreClicked
           (
           <div>
+            {/* <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br /> */}
+            <h6>Summary!</h6>
             {bank ? <h6>Bank Name: {bank}</h6> : null}
             {fullName ? <h6>Full Name: {fullName}</h6> : null}
-            <h6>Summary!</h6>
+            {phone ? <h6>Phone: {phone}</h6> : null}
+            {email ? <h6>Email: {email}</h6> : null}
+            {website ? <h6>Website: {website}</h6> : null}
+            {selectedStates.length > 0 ? <h6>Selected States: {selectedStates.map(ele => ele.value).join(" , ")}</h6> : null} 
+            {selectedCounties.length > 0 ? <h6>Selected Counties: {selectedCounties.map(ele => ele.value).join(" / ")}</h6> : null} 
+            {selectedCities.length > 0 ? <h6>Selected Cities: {selectedCities.map(ele => ele.value).join(" / ")}</h6> : null} 
+            {selectedRadius ? <h6>Radius from nearest branch: {selectedRadius} Miles</h6> : null}
+            {selectedMinLoan ? <h6>Min Loan: ${selectedMinLoan} MM</h6> : null}
+            {selectedMaxLoan ? <h6>Max Loan: ${selectedMaxLoan} MM</h6> : null}
+            {selectedLTV ? <h6>LTV: {selectedLTV * 100}% </h6> : null}
+            {selectedLTC ? <h6>LTC: {selectedLTC * 100}% </h6> : null}
+            {selectedIndexType ? <h6>Index Type: {selectedIndexType} </h6> : null}
+            {selectedBPS ? <h6>BPS: {selectedBPS} bps</h6> : null}
+            {selectedBaseRate ? <h6>Base Rate: {selectedBaseRate * 100}% </h6> : null}
+            {selectedAboveBase ? <h6>Above Base: {selectedAboveBase * 100}% </h6> : null}
+            {selectedAmortization ? <h6>Amortization: {selectedAmortization} years</h6> : null}
+            {selectedLoanTerm ? <h6>Loan Term: {selectedLoanTerm === "1.0" ? "1 year" : `${selectedLoanTerm} years`}</h6> : null}
+            {/* {phone ? <h6>Phone: {phone}</h6> : null} */}
+            
           </div>
           ) 
           :null
         }
-        
         <br />
         <button type="submit" >Outer Submit</button>
       </form>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <div ref={bottomRef}/>
+      
     </div>
     </div>
   );

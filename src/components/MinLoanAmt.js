@@ -13,7 +13,7 @@ export default function MinLoanAmt(props) {
                 onChange={e => props.setSelectedMinLoan(e.target.value)}
             >
                 <option value="">select minimum</option>
-                <option value="0.50">$500 K</option>
+                <option value="0.5">$500 K</option>
 
                 <option value="1">$1 MM</option>
                 <option value="2">$2 MM</option>

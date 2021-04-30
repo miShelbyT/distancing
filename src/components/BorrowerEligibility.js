@@ -23,8 +23,10 @@ export default function BorrowerEligibility(props) {
                 value={props.selectedBorrowerEligibility}
                 onChange={props.setSelectedBorrowerEligibility}
                 labelledBy="Select"
+                hasSelectAll={false}
             />
-
+            
         </div>
     )
+    //remove select all from Borrower Eligibility
 }

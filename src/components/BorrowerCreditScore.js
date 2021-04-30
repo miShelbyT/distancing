@@ -7,7 +7,7 @@ export default function BorrowerCreditScore(props) {
      
     return (
         <div>
-            <h4>Please select the lowest acceptable Fico Score that would make a borrower eligible for your loan</h4>
+            <h4>Please select the lowest acceptable FICO Score that would make a borrower eligible for your loan</h4>
             <select
                 value={props.selectedBorrowerCreditScore}
                 onChange={e => props.setSelectedBorrowerCreditScore(e.target.value)}
