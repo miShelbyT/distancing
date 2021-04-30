@@ -496,6 +496,12 @@ function NewLenderForm(props) {
             {selectedAboveBase ? <h6>Above Base: {selectedAboveBase * 100}% </h6> : null}
             {selectedAmortization ? <h6>Amortization: {selectedAmortization} years</h6> : null}
             {selectedLoanTerm ? <h6>Loan Term: {selectedLoanTerm === "1.0" ? "1 year" : `${selectedLoanTerm} years`}</h6> : null}
+            {selectedRecourse ? <h6>Recourse: {selectedRecourse === "true" ? "YES" : "NO"}</h6> : null}
+            {selectedPropertyTypes.length > 0 ? <h6>Selected Property Types: {selectedPropertyTypes.map(ele => ele.value).join(", ")}</h6> : null} 
+            {selectedLoanProducts.length > 0 ? <h6>Selected Loan Products: {selectedLoanProducts.map(ele => ele.value).join(", ")}</h6> : null} 
+            {selectedPrepaymentPenalty.length > 0 ? <h6>Selected Prepayment Penalty: {selectedPrepaymentPenalty.map(ele => ele.value).join(", ")}</h6> : null} 
+            {selectedBorrowerEligibility.length > 0 ? <h6>Selected Borrower Eligibility: {selectedBorrowerEligibility.map(ele => ele.value).join(", ")}</h6> : null} 
+            {selectedBorrowerCreditScore ? <h6>Credit Score: {selectedBorrowerCreditScore}</h6> : null}
             {/* {phone ? <h6>Phone: {phone}</h6> : null} */}
             
           </div>
