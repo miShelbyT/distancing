@@ -3,7 +3,7 @@ import React from 'react';
 export default function BaseRate(props) {
   return (
     <div>
-      <h4>What is your base interest rate (bottom of your interest rate range)?</h4>
+      <label>What is your base interest rate (bottom of your interest rate range)?</label>
         <select
             value={props.selectedBaseRate}
             onChange={e => props.setSelectedBaseRate(e.target.value)}

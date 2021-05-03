@@ -61,15 +61,13 @@ export default function SelectStates(props) {
     
     return (
         <div>
-            <h4>Please select all states in which you lend</h4>
-            {/* <pre>{JSON.stringify(props.selected)}</pre> */}
+            <label className="msLabel">Please select all states in which you lend</label>
             <MultiSelect
                 options={options}
                 value={props.selectedStates}
                 onChange={props.setSelectedStates}
                 labelledBy="Select"
             />
-
         </div>
     )
 }

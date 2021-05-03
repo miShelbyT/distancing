@@ -267,6 +267,7 @@ function NewLenderForm(props) {
   return (
     <div className="parent">
       <form onSubmit={submitHandler}>
+        <div className="inputs">
         <label>Bank Name:</label>
         <input
           name="name"
@@ -311,8 +312,9 @@ function NewLenderForm(props) {
           placeholder="Website URL"
           value={website}
           onChange={(e) => setWebsite(e.target.value)}
-        />
+          />
         <br />
+        </div>
         <button type="button" onClick={renderStatesSubmit}>
           Next
         </button>
@@ -348,7 +350,7 @@ function NewLenderForm(props) {
             />
 
             <button type="button" onClick={renderLTV}>
-              View LTV / LTC
+              Next
             </button>
           </>
         ) : null}

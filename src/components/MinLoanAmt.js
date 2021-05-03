@@ -7,7 +7,7 @@ export default function MinLoanAmt(props) {
     
     return (
         <div>
-            <h4>What is your minimum loan amount?</h4>
+            <label>What is your minimum loan amount?</label>
             <select
                 value={props.selectedMinLoan}
                 onChange={e => props.setSelectedMinLoan(e.target.value)}

@@ -7,7 +7,7 @@ export default function LtvLtc(props) {
     
     return (
         <div>
-            <h4>What is your maximum LTV?</h4>
+            <label>What is your maximum LTV?</label>
             <select
                 value={props.selectedLTV}
                 onChange={e => props.setSelectedLTV(e.target.value)}
@@ -20,8 +20,8 @@ export default function LtvLtc(props) {
                 <option value=".80">80%</option>
             
             </select>
-
-            <h4>What is your maximum LTC?</h4>
+            <br />
+            <label>What is your maximum LTC?</label>
             <select
                 value={props.selectedLTC}
                 onChange={e => props.setSelectedLTC(e.target.value)}

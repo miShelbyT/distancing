@@ -7,7 +7,7 @@ export default function SelectRadius(props) {
     
     return (
         <div>
-            <h4>Within how many miles must the property be from your nearest branch?</h4>
+            <label>Within how many miles must the property be from your nearest branch?</label>
             <select
                 value={props.selectedRadius}
                 onChange={e => props.setSelectedRadius(e.target.value)}

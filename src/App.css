@@ -1,14 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .App {
   text-align: center;
-  font-size: x-large;
+  font-family: 'Roboto', sans-serif;
+  /* font-size: x-large; */
+}
+
+img {
+  padding: 50px;
 }
 
 label {
-  width: 240px;
+  width: 40%;
+  /* width: 300px; */
   display: inline-block;
   text-align: left;
+  padding: 10px;
+  margin: 10px;
   /* padding-right: 5%; */
 }
+
+input {
+  font-size: 1.3rem;
+  padding: 8px;
+  margin: 10px;
+}
+
+
+select, .rmsc {
+  width: 400px;
+  font-size: 1.3rem;
+  padding: 8px;
+  display: inline-block;
+  margin: 10px;
+  font-family: inherit;
+}
+
+
+.msLabel {
+  /* padding: 0 30px; */
+  /* padding-left: 30px; */
+}
+
+select {
+  margin-left: 15px;
+}
+
+.inputs > label {
+  width: 240px;
+}
+
+button {
+  font-size: .8rem;
+  padding: 4px 8px;
+  margin: 50px;
+}
+
+
+
+
 
 
 

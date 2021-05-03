@@ -4,7 +4,7 @@ import React from 'react'
 export default function LoanTerm(props) {
     return (
         <div>
-            <h4>What is the longest term you can provide?</h4>
+            <label>What is the longest term you can provide?</label>
             <select
                 value={props.selectedLoanTerm}
                 onChange={e => props.setSelectedLoanTerm(e.target.value)}

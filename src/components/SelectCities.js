@@ -349,7 +349,7 @@ export default function SelectCities(props) {
     
     return (
         <div>
-            <h4>Please select all cities that you lend in</h4>
+            <label>Please select all cities that you lend in</label>
             <MultiSelect
                 options={options}
                 value={props.selectedCities}

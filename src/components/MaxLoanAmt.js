@@ -7,7 +7,7 @@ export default function MaxLoanAmt(props) {
     
     return (
         <div>
-            <h4>What is your maximum loan amount?</h4>
+            <label>What is your maximum loan amount?</label>
             <select
                 value={props.selectedMaxLoan}
                 onChange={e => props.setSelectedMaxLoan(e.target.value)}

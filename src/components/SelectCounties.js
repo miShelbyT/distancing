@@ -42,7 +42,7 @@ export default function SelectCounties(props) {
     return (
 
         <div>
-            <h4>Please select all counties that you lend in</h4>
+            <label className="msLabel" >Please select all counties that you lend in</label>
             <MultiSelect
                 options={options}
                 value={props.selectedCounties}

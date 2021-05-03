@@ -15,7 +15,7 @@ export default function PrepaymentPenalty(props) {
     
     return (
         <div>
-            <h4>Please select all prepayment penalty options that you can offer</h4>
+            <label>Please select all prepayment penalty options that you can offer</label>
             {/* <pre>{JSON.stringify(props.selected)}</pre> */}
             <MultiSelect
                 options={options}

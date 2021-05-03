@@ -4,7 +4,7 @@ import React from 'react'
 export default function Amortization(props) {
     return (
         <div>
-            <h4>What is the longest amortization you can offer?</h4>
+            <label>What is the longest amortization you can offer?</label>
             <select
                 value={props.selectedAmortization}
                 onChange={e => props.setSelectedAmortization(e.target.value)}

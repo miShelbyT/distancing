@@ -3,7 +3,7 @@ import React from 'react'
 export default function BPS(props) {
     return (
         <div>
-            <h4>How many BPS is your most competitive spread based on the previously selected index?</h4>
+            <label>How many BPS is your most competitive spread based on the previously selected index?</label>
             <select
                 value={props.selectedBPS}
                 onChange={e => props.setSelectedBPS(e.target.value)}

@@ -4,7 +4,7 @@ import React from 'react'
 export default function AboveBase(props) {
     return (
         <div>
-            <h4>How much above your base rate do your interest rates range?</h4>
+            <label>How much above your base rate do your interest rates range?</label>
         <select
             value={props.selectedAboveBase}
             onChange={e => props.setSelectedAboveBase(e.target.value)}

@@ -7,7 +7,7 @@ export default function GeoParameter({selectedGeoParameter, setSelectedGeoParame
     
     return (
         <div>
-            <h4>Which of the following applies to your geographic parameters?</h4>
+            <label>Which of the following applies to your geographic parameters?</label>
             <select
                 value={selectedGeoParameter}
                 onChange={e => setSelectedGeoParameter(e.target.value)}
