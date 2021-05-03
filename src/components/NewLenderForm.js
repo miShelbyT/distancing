@@ -266,7 +266,6 @@ function NewLenderForm(props) {
 
   return (
     <div className="parent">
-    <div className="anchor">
       <form onSubmit={submitHandler}>
         <label>Bank Name:</label>
         <input
@@ -284,7 +283,7 @@ function NewLenderForm(props) {
           placeholder="Full Name"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          />
+        />
         <br />
         <label>Phone Number:</label>
         <input
@@ -295,7 +294,7 @@ function NewLenderForm(props) {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           />
-        <br />
+          <br />
         <label>Email:</label>
         <input
           name="email"
@@ -304,7 +303,7 @@ function NewLenderForm(props) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           />
-        <br />
+          <br />
         <label>Website URL:</label>
         <input
           name="website"
@@ -511,8 +510,6 @@ function NewLenderForm(props) {
         <br />
         <button type="submit" >Outer Submit</button>
       </form>
-      
-    </div>
     </div>
   );
 }
