@@ -454,29 +454,10 @@ function NewLenderForm(props) {
             </button>
           </>
         ) : null}
-        {/* <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/> */}
-        <div ref={bottomRef}/>
-        {true ? //creditScoreClicked
+        
+        {creditScoreClicked ? //creditScoreClicked
           (
-          <div>
-            {/* <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br /> */}
+            <div>
             <h6>Summary!</h6>
             {bank ? <h6>Bank Name: {bank}</h6> : null}
             {fullName ? <h6>Full Name: {fullName}</h6> : null}
@@ -505,13 +486,31 @@ function NewLenderForm(props) {
             {selectedBorrowerCreditScore ? <h6>Credit Score: {selectedBorrowerCreditScore}</h6> : null}
             {/* {phone ? <h6>Phone: {phone}</h6> : null} */}
             
+            <button type="submit" >Outer Submit</button>
           </div>
           ) 
           :null
         }
         <br />
-        <button type="submit" >Outer Submit</button>
       </form>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div ref={bottomRef}/>
     </div>
   );
 }
