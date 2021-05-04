@@ -94,7 +94,6 @@ function NewLenderForm(props) {
 
   const bottomRef = useRef(null)
   useEffect(() => {
-    console.log("clicked")
     bottomRef.current.scrollIntoView({behavior: "smooth"})
   }, [nameClicked, statesClicked, countiesClicked, radiusClicked, MaxMinClicked, ltcClicked, indexTypeClicked, baseRateSelected, amortizationClicked, propertyTypesClicked, loanProductsClicked, prepaymentPenaltyClicked, borrowerEligibilityClicked])
 
@@ -291,7 +290,7 @@ function NewLenderForm(props) {
           name="phone"
           type="tel"
           placeholder="xxx-xxx-xxxx"
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           />
@@ -450,57 +449,49 @@ function NewLenderForm(props) {
               setSelectedBorrowerCreditScore={setSelectedBorrowerCreditScore}
             />
             <button type="button" onClick={renderSummary}>
-              View Summary!
+              View Summary
             </button>
           </>
         ) : null}
         
         {creditScoreClicked ? //creditScoreClicked
           (
-            <div>
-            <h6>Summary!</h6>
-            {bank ? <h6>Bank Name: {bank}</h6> : null}
-            {fullName ? <h6>Full Name: {fullName}</h6> : null}
-            {phone ? <h6>Phone: {phone}</h6> : null}
-            {email ? <h6>Email: {email}</h6> : null}
-            {website ? <h6>Website: {website}</h6> : null}
-            {selectedStates.length > 0 ? <h6>Selected States: {selectedStates.map(ele => ele.value).join(" , ")}</h6> : null} 
-            {selectedCounties.length > 0 ? <h6>Selected Counties: {selectedCounties.map(ele => ele.value).join(" / ")}</h6> : null} 
-            {selectedCities.length > 0 ? <h6>Selected Cities: {selectedCities.map(ele => ele.value).join(" / ")}</h6> : null} 
-            {selectedRadius ? <h6>Radius from nearest branch: {selectedRadius} Miles</h6> : null}
-            {selectedMinLoan ? <h6>Min Loan: ${selectedMinLoan} MM</h6> : null}
-            {selectedMaxLoan ? <h6>Max Loan: ${selectedMaxLoan} MM</h6> : null}
-            {selectedLTV ? <h6>LTV: {selectedLTV * 100}% </h6> : null}
-            {selectedLTC ? <h6>LTC: {selectedLTC * 100}% </h6> : null}
-            {selectedIndexType ? <h6>Index Type: {selectedIndexType} </h6> : null}
-            {selectedBPS ? <h6>BPS: {selectedBPS} bps</h6> : null}
-            {selectedBaseRate ? <h6>Base Rate: {selectedBaseRate * 100}% </h6> : null}
-            {selectedAboveBase ? <h6>Above Base: {selectedAboveBase * 100}% </h6> : null}
-            {selectedAmortization ? <h6>Amortization: {selectedAmortization} years</h6> : null}
-            {selectedLoanTerm ? <h6>Loan Term: {selectedLoanTerm === "1.0" ? "1 year" : `${selectedLoanTerm} years`}</h6> : null}
-            {selectedRecourse ? <h6>Recourse: {selectedRecourse === "true" ? "YES" : "NO"}</h6> : null}
-            {selectedPropertyTypes.length > 0 ? <h6>Selected Property Types: {selectedPropertyTypes.map(ele => ele.value).join(", ")}</h6> : null} 
-            {selectedLoanProducts.length > 0 ? <h6>Selected Loan Products: {selectedLoanProducts.map(ele => ele.value).join(", ")}</h6> : null} 
-            {selectedPrepaymentPenalty.length > 0 ? <h6>Selected Prepayment Penalty: {selectedPrepaymentPenalty.map(ele => ele.value).join(", ")}</h6> : null} 
-            {selectedBorrowerEligibility.length > 0 ? <h6>Selected Borrower Eligibility: {selectedBorrowerEligibility.map(ele => ele.value).join(", ")}</h6> : null} 
-            {selectedBorrowerCreditScore ? <h6>Credit Score: {selectedBorrowerCreditScore}</h6> : null}
-            {/* {phone ? <h6>Phone: {phone}</h6> : null} */}
+            <div className="summary">
+            <h4>Please review and scroll back up to make any edits before submitting:</h4>
+            {bank ? <h5>Bank Name: {bank}</h5> : null}
+            {fullName ? <h5>Full Name: {fullName}</h5> : null}
+            {phone ? <h5>Phone: {phone}</h5> : null}
+            {email ? <h5>Email: {email}</h5> : null}
+            {website ? <h5>Website: {website}</h5> : null}
+            {selectedStates.length > 0 ? <h5>Selected States: {selectedStates.map(ele => ele.value).join(" , ")}</h5> : null} 
+            {selectedCounties.length > 0 ? <h5>Selected Counties: {selectedCounties.map(ele => ele.value).join(" / ")}</h5> : null} 
+            {selectedCities.length > 0 ? <h5>Selected Cities: {selectedCities.map(ele => ele.value).join(" / ")}</h5> : null} 
+            {selectedRadius ? <h5>Radius from nearest branch: {selectedRadius} Miles</h5> : null}
+            {selectedMinLoan ? <h5>Min Loan: ${selectedMinLoan} MM</h5> : null}
+            {selectedMaxLoan ? <h5>Max Loan: ${selectedMaxLoan} MM</h5> : null}
+            {selectedLTV ? <h5>LTV: {selectedLTV * 100}% </h5> : null}
+            {selectedLTC ? <h5>LTC: {selectedLTC * 100}% </h5> : null}
+            {selectedIndexType ? <h5>Index Type: {selectedIndexType} </h5> : null}
+            {selectedBPS ? <h5>BPS: {selectedBPS} bps</h5> : null}
+            {selectedBaseRate ? <h5>Base Rate: {selectedBaseRate * 100}% </h5> : null}
+            {selectedAboveBase ? <h5>Above Base: {selectedAboveBase * 100}% </h5> : null}
+            {selectedAmortization ? <h5>Amortization: {selectedAmortization} years</h5> : null}
+            {selectedLoanTerm ? <h5>Loan Term: {selectedLoanTerm === "1.0" ? "1 year" : `${selectedLoanTerm} years`}</h5> : null}
+            {selectedRecourse ? <h5>Recourse: {selectedRecourse === "true" ? "YES" : "NO"}</h5> : null}
+            {selectedPropertyTypes.length > 0 ? <h5>Selected Property Types: {selectedPropertyTypes.map(ele => ele.value).join(", ")}</h5> : null} 
+            {selectedLoanProducts.length > 0 ? <h5>Selected Loan Products: {selectedLoanProducts.map(ele => ele.value).join(", ")}</h5> : null} 
+            {selectedPrepaymentPenalty.length > 0 ? <h5>Selected Prepayment Penalty: {selectedPrepaymentPenalty.map(ele => ele.value).join(", ")}</h5> : null} 
+            {selectedBorrowerEligibility.length > 0 ? <h5>Selected Borrower Eligibility: {selectedBorrowerEligibility.map(ele => ele.value).join(", ")}</h5> : null} 
+            {selectedBorrowerCreditScore ? <h5>Credit Score: {selectedBorrowerCreditScore}</h5> : null}
+            {/* {phone ? <h5>Phone: {phone}</h5> : null} */}
             
-            <button type="submit" >Outer Submit</button>
+            <button type="submit" >Confirm and Submit!</button>
           </div>
           ) 
           :null
         }
         <br />
       </form>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <br />
       <br />
       <br />

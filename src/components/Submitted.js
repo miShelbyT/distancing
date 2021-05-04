@@ -4,7 +4,12 @@ import React from 'react'
 export default function Submitted() {
     return (
         <div>
-            <h4>Submitted!</h4>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <h2>Thank You for Submitting!</h2>
         </div>
     )
 }

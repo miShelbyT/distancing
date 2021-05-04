@@ -25,7 +25,9 @@ function App() {
       {/* <h1>Hello from React</h1>
       <h2>The distance between the points is {result.distance} {result.unit}</h2>
       <h2>The distance between the points is {result.distance}</h2> */}
-      <img src="/UberCapitalGroup.jpeg" alt=""/>
+      <div className="header">
+        <img src="/UberCapitalGroup.jpeg" alt=""/>
+      </div>
       <Switch>
         <Route exact path="/" component={MainContainer} />
         <Route path="/submitted" component={Submitted} />
