@@ -223,7 +223,7 @@ function NewLenderForm(props) {
     e.preventDefault();
 
     console.log(stateArr);
-    fetch("http://localhost:3000/lenders", {
+    fetch("https://lenderdb.herokuapp.com/lenders", { //https://lenderdb.herokuapp.com/lenders
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
