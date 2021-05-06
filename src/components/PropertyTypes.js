@@ -26,7 +26,7 @@ export default function PropertyTypes(props) {
             {value: "Mobile / Manufactured home park", label: "Mobile / Manufactured home park"},
             {value: "RV Park", label: "RV Park"},
             {value: "Grocery Anchored Retail", label: "Grocery Anchored Retail"},
-            {value: "Single tenant - public, investment grade credit", label: "Single tenant - publice, investment grade credit"},
+            {value: "Single tenant - public, investment grade credit", label: "Single tenant - public, investment grade credit"},
             {value: "Single tenant - private, non-credit franchise", label: "Single tenant - private, non-credit franchise"},
             {value: "Unanchored strip center", label: "Unanchored strip center"},
             {value: "Owner occupied retail", label: "Owner occupied retail"},
