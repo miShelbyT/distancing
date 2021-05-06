@@ -26,8 +26,7 @@ export default function PropertyTypes(props) {
             {value: "Mobile / Manufactured home park", label: "Mobile / Manufactured home park"},
             {value: "RV Park", label: "RV Park"},
             {value: "Grocery Anchored Retail", label: "Grocery Anchored Retail"},
-            {value: "Single tenant", label: "Single tenant"},
-            {value: "Single tenant - publice, investment grade credit", label: "Single tenant - publice, investment grade credit"},
+            {value: "Single tenant - public, investment grade credit", label: "Single tenant - publice, investment grade credit"},
             {value: "Single tenant - private, non-credit franchise", label: "Single tenant - private, non-credit franchise"},
             {value: "Unanchored strip center", label: "Unanchored strip center"},
             {value: "Owner occupied retail", label: "Owner occupied retail"},
@@ -40,7 +39,9 @@ export default function PropertyTypes(props) {
             {value: "Student Housing", label: "Student Housing"},
             {value: "Cannabis retail / dispensary - owner occupied", label: "Cannabis retail / dispensary - owner occupied"},
             {value: "Cannabis retail / dispensary - investment property", label: "Cannabis retail / dispensary - investment property"},
-            {value: "Senior Living / Assisted Living / Active Living / Independent Living", label: "Senior Living / Assisted Living / Active Living / Independent Living (Please select if you lend on ANY of these facilities)"}
+            {value: "Cannabis Cultivation Facility - owner occupied", label: "Cannabis Cultivation Facility - owner occupied"},
+            {value: "Cannabis Cultivation Facility - investment property", label: "Cannabis Cultivation Facility - investment property"},
+            {value: "Senior Living / Assisted Living / Active Living / Independent Living / Nursing Home", label: "Senior Living / Assisted Living / Active Living / Independent Living / Nursing Home (Please select if you lend on ANY of these facilities)"}
     ]
     
     return (

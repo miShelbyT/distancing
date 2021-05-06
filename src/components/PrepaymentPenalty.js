@@ -7,7 +7,7 @@ export default function PrepaymentPenalty(props) {
     
     const options = [
             {value: "No prepayment penalty", label: "No prepayment penalty"},
-            {value: "No prepayment penalty in the even of a sale", label: "No prepayment penalty in the even of a sale"},
+            {value: "No prepayment penalty in the event of a sale", label: "No prepayment penalty in the even of a sale"},
             {value: "Stepdown prepayment penalty", label: "Stepdown prepayment penalty"},
             {value: "Yield Maintenance", label: "Yield Maintenance"},
             {value: "Defeasance", label: "Defeasance"}
