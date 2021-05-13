@@ -1,4 +1,4 @@
-This freelance project was pair programmed throughout with Jonny Hakimian. It is a complex form that renders conditionally dependent upon user input, with one fetch that saves all input to a Heroku database. This project was deployed via Netlify and is hosted [here](www.ucglendersurvery.com) -- please do not submit any data into this db!
+This freelance project was pair programmed with Jonny Hakimian. It is a complex form that renders conditionally dependent upon user input, with one fetch that saves all input to a Heroku database. This project was deployed via Netlify and is hosted [here](www.ucglendersurvery.com) -- please do not submit any data into this db!
 
 
 
